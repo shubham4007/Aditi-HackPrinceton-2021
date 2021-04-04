@@ -204,7 +204,7 @@
                   <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg" />
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm font-weight-bold">Admin</span>
+                  <span class="mb-0 text-sm font-weight-bold">User</span>
                 </div>
               </div>
             </a>
@@ -722,13 +722,13 @@
               <div class="row align-items-center">
                 <div class="col">
                   <img align="right" src="./img/icons/question-blue.png" data-toggle="tooltip" data-placement="top"
-                    title="Month-wise sales comparision between the selected two products">
+                    title="See a comparision between your mood distribution for the current month Vs your average mood distribution in the previous 6 months">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">
                     Distribution
                   </h6>
 
-                  <h2 class="mb-0">Emotion Radar</h2><br>
-                  <select id="prod1" class="custom-select custom-select-sm" onchange="orders1(this.value)">
+                  <h2 class="mb-0">Emotion Radar</h2>
+                  <!-- <select id="prod1" class="custom-select custom-select-sm" onchange="orders1(this.value)">
                     <option disabled>Select a month</option>
                     <option selected value="1">April</option>
                     <option value="2">March</option>
@@ -736,7 +736,7 @@
                     <option value="4">January</option>
                     <option value="5">December</option>
                     <option value="6">November</option>
-                  </select><br><br>
+                  </select><br><br> -->
                 </div>
               </div>
             </div>
@@ -744,30 +744,24 @@
             <div class="card-body">
               <!-- Chart -->
               <div class="chart">
-                <canvas id="chart-orderz" class="chart-canvas"></canvas>
+                <canvas id="chart-orderz" class="chart-canvas" height="35" width="50"></canvas>
               </div>
+              <br><br><br><br><br>
               <script>
                 const data1 = {
-                  // 'Happy',
-                  //   'Calm',
-                  //   'Neutral',
-                  //   'Surprised',
-                  //   'Sad',
-                  //   'Fearful',
-                  //   'Disgust',
-                  //   'Anger'
                   labels: [
-                    'Eating',
-                    'Drinking',
-                    'Sleeping',
-                    'Designing',
-                    'Coding',
-                    'Cycling',
-                    'Running'
+                    'Neutral',
+                    'Calm',
+                    'Happy',
+                    'Surprised',
+                    'Sad',
+                    'Fearful',
+                    'Disgust',
+                    "Angry"
                   ],
                   datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 90, 81, 56, 55, 40],
+                    label: 'Current Month',
+                    data: [70, 50, 60, 20, 60, 45, 60, 55],
                     fill: true,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgb(255, 99, 132)',
@@ -776,8 +770,8 @@
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgb(255, 99, 132)'
                   }, {
-                    label: 'My Second Dataset',
-                    data: [28, 48, 40, 19, 96, 27, 100],
+                    label: '6 Month Average',
+                    data: [60, 48, 40, 49, 76, 40, 80, 92],
                     fill: true,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgb(54, 162, 235)',
@@ -862,95 +856,94 @@
                 //     }
                 //   }
                 // });
-                var p1, p2;
+              //   var p1, p2;
 
-                function orders1(choice) {
-                  switch (choice) {
-                    case '1':
-                      chart.data.datasets[0].label = "Retail Loans";
-                      chart.data.datasets[0].data = [65, 30, 20, 35, 10, 45, 45, 50];
-                      chart.update()
-                      break;
-                    case '2':
-                      chart.data.datasets[0].label = "Education Loans";
-                      chart.data.datasets[0].data = [35, 30, 20, 25, 20, 25, 45, 65];
-                      chart.update()
-                      break;
-                    case '3':
-                      chart.data.datasets[0].label = "Agricultural Loans";
-                      chart.data.datasets[0].data = [15, 30, 20, 45, 10, 45, 55, 60];
-                      chart.update()
-                      break;
-                    case '4':
-                      chart.data.datasets[0].label = "(CASA)";
-                      chart.data.datasets[0].data = [55, 40, 25, 30, 40, 35, 65, 50];
-                      chart.update()
-                      break;
-                    case '5':
-                      chart.data.datasets[0].label = "Corporate Finance";
-                      chart.data.datasets[0].data = [65, 50, 40, 45, 30, 15, 25, 20];
-                      chart.update()
-                      break;
-                  }
-                }
+              //   function orders1(choice) {
+              //     switch (choice) {
+              //       case '1':
+              //         chart.data.datasets[0].label = "Retail Loans";
+              //         chart.data.datasets[0].data = [65, 30, 20, 35, 10, 45, 45, 50];
+              //         chart.update()
+              //         break;
+              //       case '2':
+              //         chart.data.datasets[0].label = "Education Loans";
+              //         chart.data.datasets[0].data = [35, 30, 20, 25, 20, 25, 45, 65];
+              //         chart.update()
+              //         break;
+              //       case '3':
+              //         chart.data.datasets[0].label = "Agricultural Loans";
+              //         chart.data.datasets[0].data = [15, 30, 20, 45, 10, 45, 55, 60];
+              //         chart.update()
+              //         break;
+              //       case '4':
+              //         chart.data.datasets[0].label = "(CASA)";
+              //         chart.data.datasets[0].data = [55, 40, 25, 30, 40, 35, 65, 50];
+              //         chart.update()
+              //         break;
+              //       case '5':
+              //         chart.data.datasets[0].label = "Corporate Finance";
+              //         chart.data.datasets[0].data = [65, 50, 40, 45, 30, 15, 25, 20];
+              //         chart.update()
+              //         break;
+              //     }
+              //   }
 
-                function orders2(choice) {
-                  switch (choice) {
-                    case '2':
-                      chart.data.datasets[1].label = "Education Loans";
-                      chart.data.datasets[1].data = [35, 30, 20, 25, 20, 25, 45, 65];
-                      chart.update()
-                      break;
-                    case '1':
-                      chart.data.datasets[1].label = "Retail Loans";
-                      chart.data.datasets[1].data = [65, 30, 20, 35, 10, 45, 45, 50];
-                      chart.update()
-                      break;
-                    case '3':
-                      chart.data.datasets[1].label = "Agricultural Loans";
-                      chart.data.datasets[1].data = [15, 30, 20, 45, 10, 45, 55, 60];
-                      chart.update()
-                      break;
-                    case '4':
-                      chart.data.datasets[1].label = "(CASA)";
-                      chart.data.datasets[1].data = [55, 40, 25, 30, 40, 35, 65, 50];
-                      chart.update()
-                      break;
-                    case '5':
-                      chart.data.datasets[1].label = "Corporate Finance";
-                      chart.data.datasets[1].data = [65, 50, 40, 45, 30, 15, 25, 20];
-                      chart.update()
-                      break;
-                  }
-                }
-              </script>
+              //   function orders2(choice) {
+              //     switch (choice) {
+              //       case '2':
+              //         chart.data.datasets[1].label = "Education Loans";
+              //         chart.data.datasets[1].data = [35, 30, 20, 25, 20, 25, 45, 65];
+              //         chart.update()
+              //         break;
+              //       case '1':
+              //         chart.data.datasets[1].label = "Retail Loans";
+              //         chart.data.datasets[1].data = [65, 30, 20, 35, 10, 45, 45, 50];
+              //         chart.update()
+              //         break;
+              //       case '3':
+              //         chart.data.datasets[1].label = "Agricultural Loans";
+              //         chart.data.datasets[1].data = [15, 30, 20, 45, 10, 45, 55, 60];
+              //         chart.update()
+              //         break;
+              //       case '4':
+              //         chart.data.datasets[1].label = "(CASA)";
+              //         chart.data.datasets[1].data = [55, 40, 25, 30, 40, 35, 65, 50];
+              //         chart.update()
+              //         break;
+              //       case '5':
+              //         chart.data.datasets[1].label = "Corporate Finance";
+              //         chart.data.datasets[1].data = [65, 50, 40, 45, 30, 15, 25, 20];
+              //         chart.update()
+              //         break;
+              //     }
+              //   }
+              // </script>
             </div>
           </div>
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Leaderboards</h3>
+                  <h3 class="mb-0">Conversation Analyser</h3><br>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  <a href="#!" class="btn btn-sm btn-primary">See all conversations</a>
                 </div>
               </div>
+              <p><b>Speech Emotion Recognition (SER)</b> algorithm thinks the emotion is: <b>Sad</b></p>
             </div>
             <div class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Rank</th>
-                    <th scope="col">User name</th>
-                    <th scope="col">Leads converted</th>
-                    <th scope="col">Performance</th>
-                    <th scope="col">Assign points</th>
+                    <th scope="col">Line #</th>
+                    <th scope="col">Transcripted text</th>
+                    <th scope="col">Emotion Analysed</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -959,121 +952,50 @@
                       1
                     </th>
                     <td>
-                      Shreya Luthra
+                      i don't know i'm just not feeling too good
                     </td>
                     <td>
-                      250
+                      <i class="fas fa-arrow-down text-red mr-3"></i> Sad
                     </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46.53%
-                    </td>
-                    <td>
-                      <form>
-                        <div class="row">
-                          <div class="col-sm-7">
-                            <input type="number" class="form-control form-control-alternative" placeholder="Points"
-                              id="1" min="0" step="5" value="270" />
-                          </div>
-                        </div>
-                      </form>
-                    </td>
+                    
                   </tr>
                   <tr>
                     <th scope="row">
                       2
                     </th>
                     <td>
-                      Avi Mathews
+                      not really
                     </td>
                     <td>
-                      232
+                      <i class="fas fa-arrow-up text-success mr-3"></i> Neutral
                     </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-red mr-3"></i> 32.67%
-                    </td>
-                    <td>
-                      <form>
-                        <div class="row">
-                          <div class="col-sm-7">
-                            <input type="number" class="form-control form-control-alternative" placeholder="Points"
-                              min="0" step="5" value="270" />
-                          </div>
-                        </div>
-                      </form>
-                    </td>
+                    
                   </tr>
                   <tr>
                     <th scope="row">
                       3
                     </th>
                     <td>
-                      Pratyush Sharma
+                      i would feel happy and content others would also finally respect me for who i actually am
                     </td>
                     <td>
-                      211
+                      <i class="fas fa-arrow-up text-success mr-3"></i> Calm
                     </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 12.74%
-                    </td>
-                    <td>
-                      <form>
-                        <div class="row">
-                          <div class="col-sm-7">
-                            <input type="number" class="form-control form-control-alternative" placeholder="Points"
-                              min="0" step="5" value="270" />
-                          </div>
-                        </div>
-                      </form>
-                    </td>
+                    
                   </tr>
                   <tr>
                     <th scope="row">
                       4
                     </th>
                     <td>
-                      Sejal Dixit
+                      i sometimes feel like an imposter especially when i'm around so many talented people in my university
                     </td>
                     <td>
-                      199
+                      <i class="fas fa-arrow-down text-red mr-3"></i> Disgust
                     </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-red mr-3"></i> 19.21%
-                    </td>
-                    <td>
-                      <form>
-                        <div class="row">
-                          <div class="col-sm-7">
-                            <input type="number" class="form-control form-control-alternative" placeholder="Points"
-                              min="0" step="5" value="240" />
-                          </div>
-                        </div>
-                      </form>
-                    </td>
+                    
                   </tr>
-                  <tr>
-                    <th scope="row">
-                      5
-                    </th>
-                    <td>
-                      Hardeep Singh
-                    </td>
-                    <td>
-                      195
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 32.06%
-                    </td>
-                    <td>
-                      <form>
-                        <div class="row">
-                          <div class="col-sm-7">
-                            <input type="number" class="form-control form-control-alternative" placeholder="Points"
-                              min="0" step="5" value="240" />
-                          </div>
-                        </div>
-                      </form>
-                    </td>
-                  </tr>
+
                 </tbody>
               </table>
             </div>
