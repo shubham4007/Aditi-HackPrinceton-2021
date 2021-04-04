@@ -331,7 +331,7 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card bg-gradient-default shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -612,100 +612,268 @@
         </script>
         <div class="col-xl-4">
           <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <img align="right" src="./img/icons/question-blue.png" data-toggle="tooltip" data-placement="top"
+                    title="See how you generally react in a week based on your previous behavioural pattern">
+                  <h3 class="mb-0">Behavioural Pattern</h3>
+
+                </div>
+
+              </div>
+              <br>
+              <select id="prod3" class="custom-select custom-select-md" onchange="age(this.value)">
+                <option disabled>Select a day</option>
+                <option selected value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="7">Sunday</option>
+              </select>
+            </div>
+            <hr />
+            <div class="chart-container">
+              <br>
+              <canvas id="barChart" width="1000" height="1000"></canvas>
+            </div>
+            <br>
+            <script>
+              var canvas = document.getElementById("barChart");
+              var ctx = canvas.getContext("2d");
+
+              // Global Options:
+
+              var data = {
+                labels: ["Neutral", "Calm", "Happy", "Surprised", "Sad", "Fearful", "Disgust", "Angry"],
+                datasets: [{
+                  fill: true,
+                  backgroundColor: [
+                    "#efefef",
+                    "#80b3ff",
+                    "#3385ff",
+                    "#005ce6",
+                    "#f4869a",
+                    "#ff4f6c",
+                    "#ed2547",
+                    "#ff002a"
+                  ],
+                  data: [20, 20, 10, 0, 60, 40, 10, 30],
+                  // Notice the borderColor
+                  borderColor: ["white", "white"],
+                  borderWidth: [2, 2]
+                }]
+              };
+
+              // Notice the rotation from the documentation.
+
+              var options = {
+                rotation: -0.7 * Math.PI
+              };
+
+              // Chart declaration:
+              var myBarChart = new Chart(ctx, {
+                type: "pie",
+                data: data,
+                options: options
+              });
+
+              function age(choice) {
+                switch (choice) {
+                  case '1':
+                    myBarChart.data.datasets[0].data = [20, 20, 10, 0, 60, 40, 10, 30];
+                    myBarChart.update();
+                    break;
+                  case '2':
+                    myBarChart.data.datasets[0].data = [40, 20, 10, 10, 30, 20, 0, 20];
+                    myBarChart.update();
+                    break;
+                  case '3':
+                    myBarChart.data.datasets[0].data = [30, 30, 15, 10, 20, 30, 10, 20];
+                    myBarChart.update();
+                    break;
+                  case '4':
+                    myBarChart.data.datasets[0].data = [10, 40, 35, 10, 0, 60, 90, 10];
+                    myBarChart.update();
+                    break;
+                  case '5':
+                    myBarChart.data.datasets[0].data = [30, 30, 15, 10, 20, 30, 10, 20];
+                    myBarChart.update();
+                    break;
+                  case '6':
+                    myBarChart.data.datasets[0].data = [10, 50, 50, 5, 30, 0, 0, 25];
+                    myBarChart.update();
+                    break;
+                  case '7':
+                    myBarChart.data.datasets[0].data = [20, 50, 20, 25, 20, 20, 20, 25];
+                    myBarChart.update();
+                    break;
+                }
+              }
+            </script>
+          </div>
+        </div>
+        
+        <div class="col-xl-8">
+          <div class="card shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
                   <img align="right" src="./img/icons/question-blue.png" data-toggle="tooltip" data-placement="top"
                     title="Month-wise sales comparision between the selected two products">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">
-                    Performance
+                    Distribution
                   </h6>
 
-                  <h2 class="mb-0">-</h2><br>
+                  <h2 class="mb-0">Emotion Radar</h2><br>
                   <select id="prod1" class="custom-select custom-select-sm" onchange="orders1(this.value)">
-                    <option disabled>Select a product</option>
-                    <option selected value="1">#</option>
-                    <option value="2">#</option>
-                    <option value="3">#</option>
-                    <option value="4">#</option>
-                    <option value="5">#</option>
+                    <option disabled>Select a month</option>
+                    <option selected value="1">April</option>
+                    <option value="2">March</option>
+                    <option value="3">February</option>
+                    <option value="4">January</option>
+                    <option value="5">December</option>
+                    <option value="6">November</option>
                   </select><br><br>
-                  <select id="prod2" class="custom-select custom-select-sm" onchange="orders2(this.value)">
-                    <option selected disabled>Select a product</option>
-                    <option value="1">#</option>
-                    <option selected value="2">#</option>
-                    <option value="3">#</option>
-                    <option value="4">#</option>
-                    <option value="5">#</option>
-                  </select>
                 </div>
               </div>
             </div>
+            
             <div class="card-body">
               <!-- Chart -->
               <div class="chart">
                 <canvas id="chart-orderz" class="chart-canvas"></canvas>
               </div>
               <script>
+                const data1 = {
+                  // 'Happy',
+                  //   'Calm',
+                  //   'Neutral',
+                  //   'Surprised',
+                  //   'Sad',
+                  //   'Fearful',
+                  //   'Disgust',
+                  //   'Anger'
+                  labels: [
+                    'Eating',
+                    'Drinking',
+                    'Sleeping',
+                    'Designing',
+                    'Coding',
+                    'Cycling',
+                    'Running'
+                  ],
+                  datasets: [{
+                    label: 'My First Dataset',
+                    data: [65, 59, 90, 81, 56, 55, 40],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                  }, {
+                    label: 'My Second Dataset',
+                    data: [28, 48, 40, 19, 96, 27, 100],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                  }]
+                };
+
+                  const config = {
+                  type: 'radar',
+                  data: data1,
+                  options: {
+                    elements: {
+                      line: {
+                        borderWidth: 3
+                      }
+                    }
+                  },
+                };
                 var ctrx = document
                   .getElementById("chart-orderz")
                   .getContext("2d");
-                var chart = new Chart(ctrx, {
-                  // The type of chart we want to create
-                  type: "bar",
-                  // The data for our dataset
-                  data: {
-                    labels: [
-                      "January",
-                      "February",
-                      "March",
-                      "April",
-                      "May",
-                      "June",
-                      "July",
-                      "August"
-                    ],
-                    datasets: [{
-                        label: "Retail Loans",
-                        backgroundColor: "#172b4d",
-                        borderColor: "#172b4d",
-                        data: [65, 30, 20, 35, 10, 45, 45, 50]
-                      },
-                      {
-                        label: "Education Loans",
-                        backgroundColor: "#f5365c",
-                        borderColor: "#f5365c",
-                        data: [35, 30, 20, 25, 20, 25, 45, 65]
-                      }
-                    ]
-                  },
-                  options: {
-                    maintainAspectRatio: false,
-                    scales: {
-                      xAxes: [{
-                        barPercentage: 0.5,
-                        barThickness: 8,
-                        maxBarThickness: 20,
-                        minBarLength: 2000,
-                        gridLines: {
-                          offsetGridLines: true
+                var myRadarChart = new Chart(ctrx, {
+                    type: 'radar',
+                    data: data1,
+                    options: {
+                      elements: {
+                        line: {
+                          borderWidth: 3
                         }
-                      }]
+                      }
                     }
-                  }
                 });
+
+
+                // var ctrx = document
+                //   .getElementById("chart-orderz")
+                //   .getContext("2d");
+                // var chart = new Chart(ctrx, {
+                //   // The type of chart we want to create
+                //   type: "bar",
+                //   // The data for our dataset
+                //   data: {
+                //     labels: [
+                //       "January",
+                //       "February",
+                //       "March",
+                //       "April",
+                //       "May",
+                //       "June",
+                //       "July",
+                //       "August"
+                //     ],
+                //     datasets: [{
+                //         label: "Retail Loans",
+                //         backgroundColor: "#172b4d",
+                //         borderColor: "#172b4d",
+                //         data: [65, 30, 20, 35, 10, 45, 45, 50]
+                //       },
+                //       {
+                //         label: "Education Loans",
+                //         backgroundColor: "#f5365c",
+                //         borderColor: "#f5365c",
+                //         data: [35, 30, 20, 25, 20, 25, 45, 65]
+                //       }
+                //     ]
+                //   },
+                //   options: {
+                //     maintainAspectRatio: false,
+                //     scales: {
+                //       xAxes: [{
+                //         barPercentage: 0.5,
+                //         barThickness: 8,
+                //         maxBarThickness: 20,
+                //         minBarLength: 2000,
+                //         gridLines: {
+                //           offsetGridLines: true
+                //         }
+                //       }]
+                //     }
+                //   }
+                // });
                 var p1, p2;
 
                 function orders1(choice) {
                   switch (choice) {
-                    case '2':
-                      chart.data.datasets[0].label = "Education Loans";
-                      chart.data.datasets[0].data = [35, 30, 20, 25, 20, 25, 45, 65];
-                      chart.update()
-                      break;
                     case '1':
                       chart.data.datasets[0].label = "Retail Loans";
                       chart.data.datasets[0].data = [65, 30, 20, 35, 10, 45, 45, 50];
+                      chart.update()
+                      break;
+                    case '2':
+                      chart.data.datasets[0].label = "Education Loans";
+                      chart.data.datasets[0].data = [35, 30, 20, 25, 20, 25, 45, 65];
                       chart.update()
                       break;
                     case '3':
@@ -911,7 +1079,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4">
+        <!-- <div class="col-xl-4">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -999,7 +1167,7 @@
               }
             </script>
           </div>
-        </div>
+        </div> -->
       </div>
       <br>
       <!-- <div class="card shadow">
